@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 pageB();
             }
         });
+        initPerson();
     }
 
     private void pageB(){
@@ -29,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void initPerson(){
-        Person person = new Person("Hi");
-        Log.d(TAG, "initPerson: "+person.getName());
+    public Person initPerson(){
+        Person person = new Person("P");
+        Log.d(TAG, "initStu: "+person.getName());
+        return person;
     }
 }
