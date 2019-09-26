@@ -1,4 +1,6 @@
-apply plugin: 'java-library'
+//apply plugin: 'java-library'
+apply plugin: 'java'
+apply plugin: 'jacoco'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -8,3 +10,52 @@ dependencies {
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+
+test {
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.4"
+}
+
+//jacocoTestReport {
+//    reports {
+//        xml.enabled false
+//        csv.enabled false
+////        html.enabled true
+//        html {
+//            enabled true
+//        }
+//
+//        // TODO: not generate html dir
+////        html.destination file("${buildDir}/reports/html")
+////        xml.destination file("${buildDir}/reports/xmlReport.xml")
+//    }
+//}
+
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            limit {
+//                minimum = 0.5
+//            }
+//        }
+//
+//        rule {
+//            enabled = false
+//            element = 'CLASS'
+////            includes = ['org.gradle.*']
+//            includes = ['com.github.yingvickycao.javalib']
+//
+//            limit {
+//                counter = 'LINE'
+//                value = 'TOTALCOUNT'
+//                maximum = 0.3
+//            }
+//        }
+//    }
+//}
