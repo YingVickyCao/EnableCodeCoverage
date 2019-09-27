@@ -21,19 +21,12 @@ public class MainActivity extends AppCompatActivity {
         sumResult = findViewById(R.id.sumResult);
 
         findViewById(R.id.pageB).setOnClickListener(view -> pageB());
-        initPerson();
         printSum();
     }
 
-    private void pageB(){
+    public void pageB(){
         Intent intent = new Intent(this,SecondActivity.class);
         startActivity(intent);
-    }
-
-    public Person initPerson(){
-        Person person = new Person("P");
-        Log.d(TAG, "initStu: "+person.getName());
-        return person;
     }
 
     public void printSum(){

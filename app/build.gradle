@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-//apply plugin: 'jacoco'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 29
@@ -32,6 +32,23 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    jacoco {
+        // 0.7.9
+        version = "0.8.4"
+    }
+
+    logger.error("jacoco version=" + jacoco.version)
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+                classDumpDir = file("$buildDir/jacoco/classpathdumps")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -49,20 +66,51 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-//test {
-//    jacoco {
-//        toolVersion = '0.8.4'
-//        reportsDir = file("$buildDir/reports/jacoco")
-//    }
-//}
+jacoco {
+    toolVersion "0.8.4"
+}
+
+final capVariant = "Debug";
+task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: "test${capVariant}UnitTest")
+task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["test${capVariant}UnitTest", "create${capVariant}CoverageReport"])
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+//        html.enabled true
+        html {
+            enabled true
+        }
+
+        // TODO: not generate html dir
+        html.destination file("${buildDir}/reports/html")
+//        xml.destination file("${buildDir}/reports/xmlReport.xml")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = false
 
 
+            element = 'CLASS'
+            includes = ['com.github.yingvickycao.enablecodecoverage']
 
-//jacocoTestReport {
-//    reports {
-//        xml.enabled false
-//        csv.enabled false
-//        html.enable true
-//        html.destination file("${buildDir}/jacocoHtml")
-//    }
-//}
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
+
+//enableJacoco(project, 'Debug')

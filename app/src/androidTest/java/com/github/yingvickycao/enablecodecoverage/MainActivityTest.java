@@ -20,9 +20,6 @@ public class MainActivityTest {
 
     @Test
     public void initPerson() {
-        Person person = new Person("B");
-        Assert.assertEquals("B", person.getName());
-
-        Assert.assertEquals("P", activityRule.getActivity().initPerson().getName());
+        activityRule.getActivity().pageB();
     }
 }

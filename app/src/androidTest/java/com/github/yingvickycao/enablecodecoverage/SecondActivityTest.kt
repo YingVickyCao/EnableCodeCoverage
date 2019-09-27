@@ -18,9 +18,6 @@ class SecondActivityTest {
 
     @Test
     fun initStu() {
-//        val stu = Stu("B")
-//        Assert.assertEquals("B", stu.name)
-
-        Assert.assertEquals("S", activityRule.activity.initStu().getName())
+        activityRule.activity.initStu()
     }
 }
