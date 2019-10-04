@@ -1,2 +1,2 @@
-include ':app', ':javaLib', ':javaLib2'
+include ':app', ':javaLib'
 rootProject.name='EnableCodeCoverage'
