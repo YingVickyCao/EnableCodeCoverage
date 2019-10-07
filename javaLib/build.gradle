@@ -16,10 +16,8 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 test {
     jacoco {
-//        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
-        destinationFile = file("$buildDir/../../app/build/jacoco/jacocoTest.exec")
-//        classDumpDir = file("$buildDir/jacoco/classpathdumps")
-        classDumpDir = file("$buildDir/../../app/build/jacoco/classpathdumps")
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
 }
 
