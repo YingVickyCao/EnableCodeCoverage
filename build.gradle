@@ -30,14 +30,88 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task jacocoMergeAll(name: 'JacocoMerge', type: JacocoMerge, dependsOn: "jacocoTestReport"){
-    def jacocoProjects = subprojects.findAll {
-        def buildDir = it.getBuildDir()
-        def testExecFile = file(buildDir.getAbsolutePath() + '/jacoco/jacocoTest.exec')
-        logger.debug('Looking for JaCoCo jacocoTest.exec file {}', testExecFile)
-        return testExecFile.exists()
+//task jacocoMergeAll(name: 'JacocoMerge', type: JacocoMerge, dependsOn: "jacocoTestReport") {
+//    def jacocoProjects = subprojects.findAll {
+//        def buildDir = it.getBuildDir()
+//        def testExecFile = file(buildDir.getAbsolutePath() + '/jacoco/jacocoTest.exec')
+//        logger.error('Looking for JaCoCo jacocoTest.exec file {}', testExecFile)
+//        return testExecFile.exists()
+//    }
+//
+//    logger.error('Looking for JaCoCo jacocoTest.exec file {}', jacocoProjects)
+//    jacocoProjects.each {
+//        subproject -> executionData subproject.tasks.withType(Test)
+//            logger.error('jacocoProjects.each', executionData)
+//    }
+//}
+
+def getJacocoMergeTask(Project proj) {
+    def jmClosure = {
+        doFirst {
+            logger.info "${path} started"
+            executionData.each { ed ->
+                logger.info "${path} data: ${ed}"
+            }
+        }
+        onlyIf {
+            executionData != null && !executionData.isEmpty()
+        }
     }
-    jacocoProjects.each { subproject ->
-        executionData subproject.tasks.withType(Test)
+
+    def jacocoMerge = null
+    if (!proj.tasks.findByName('jacocoMerge')) {
+
+        jacocoMerge = proj.tasks.create('jacocoMerge', JacocoMerge.class)
+        jacocoMerge.configure jmClosure
+
+        // sonar specific part
+        proj.rootProject.tasks["sonarqube"].mustRunAfter jacocoMerge
+
+        proj.sonarqube {
+            properties {
+                property "sonar.jacoco.reportPaths", jacocoMerge.destinationFile.absolutePath
+            }
+        }
+        // end of sonar specific part
+
+        logger.info "${jacocoMerge.path} created"
+    } else {
+        jacocoMerge = proj.tasks["jacocoMerge"]
     }
+    jacocoMerge
+}
+
+
+afterEvaluate {
+    project ->
+        def jacocoMerge = getJacocoMergeTask(project)
+
+        project.tasks.withType(Test) { task ->
+            logger.info "${jacocoMerge.path} cfg: ${task.path}"
+
+            task.finalizedBy jacocoMerge
+            jacocoMerge.dependsOn task
+
+            task.doLast {
+                logger.info "${jacocoMerge.path} executionData ${task.path}"
+                jacocoMerge.executionData task
+            }
+
+            def cfg = configurations.getByName("${task.name}Runtime")
+            logger.info "${project.path} process config: ${cfg.name}"
+
+            cfg.getAllDependencies().withType(ProjectDependency.class).each { pd ->
+                def depProj = pd.dependencyProject
+                logger.info "${task.path} dependsOn ${depProj.path}"
+                def jm = getJacocoMergeTask(depProj)
+
+                task.finalizedBy jm
+                jm.dependsOn task
+
+                task.doLast {
+                    logger.info "${jm.path} executionData ${task.path}"
+                    jm.executionData task
+                }
+            }
+        }
 }
