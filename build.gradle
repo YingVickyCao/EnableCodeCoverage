@@ -45,8 +45,8 @@ task clean(type: Delete) {
 //    }
 //}
 
-def getJacocoMergeTask(Project proj) {
-    def jmClosure = {
+def getJacocoMergeTask(Project proj){
+    def jmClosure =  {
         doFirst {
             logger.info "${path} started"
             executionData.each { ed ->
@@ -59,7 +59,7 @@ def getJacocoMergeTask(Project proj) {
     }
 
     def jacocoMerge = null
-    if (!proj.tasks.findByName('jacocoMerge')) {
+    if(!proj.tasks.findByName('jacocoMerge')){
 
         jacocoMerge = proj.tasks.create('jacocoMerge', JacocoMerge.class)
         jacocoMerge.configure jmClosure
@@ -82,36 +82,35 @@ def getJacocoMergeTask(Project proj) {
 }
 
 
-afterEvaluate {
-    project ->
-        def jacocoMerge = getJacocoMergeTask(project)
+afterEvaluate { project ->
+    def jacocoMerge = getJacocoMergeTask(project)
 
-        project.tasks.withType(Test) { task ->
-            logger.info "${jacocoMerge.path} cfg: ${task.path}"
+    project.tasks.withType(Test) { task ->
+        logger.info "${jacocoMerge.path} cfg: ${task.path}"
 
-            task.finalizedBy jacocoMerge
-            jacocoMerge.dependsOn task
+        task.finalizedBy jacocoMerge
+        jacocoMerge.dependsOn task
+
+        task.doLast {
+            logger.info "${jacocoMerge.path} executionData ${task.path}"
+            jacocoMerge.executionData task
+        }
+
+        def cfg = configurations.getByName("${task.name}Runtime")
+        logger.info "${project.path} process config: ${cfg.name}"
+
+        cfg.getAllDependencies().withType(ProjectDependency.class).each { pd ->
+            def depProj = pd.dependencyProject
+            logger.info "${task.path} dependsOn ${depProj.path}"
+            def jm = getJacocoMergeTask(depProj)
+
+            task.finalizedBy jm
+            jm.dependsOn task
 
             task.doLast {
-                logger.info "${jacocoMerge.path} executionData ${task.path}"
-                jacocoMerge.executionData task
-            }
-
-            def cfg = configurations.getByName("${task.name}Runtime")
-            logger.info "${project.path} process config: ${cfg.name}"
-
-            cfg.getAllDependencies().withType(ProjectDependency.class).each { pd ->
-                def depProj = pd.dependencyProject
-                logger.info "${task.path} dependsOn ${depProj.path}"
-                def jm = getJacocoMergeTask(depProj)
-
-                task.finalizedBy jm
-                jm.dependsOn task
-
-                task.doLast {
-                    logger.info "${jm.path} executionData ${task.path}"
-                    jm.executionData task
-                }
+                logger.info "${jm.path} executionData ${task.path}"
+                jm.executionData task
             }
         }
+    }
 }
