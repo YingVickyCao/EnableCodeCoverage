@@ -7,7 +7,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
@@ -21,11 +21,23 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task jacocoMergeAll(name: 'JacocoMerge', type: JacocoMerge, dependsOn: "jacocoTestReport"){
+    def jacocoProjects = subprojects.findAll {
+        def buildDir = it.getBuildDir()
+        def testExecFile = file(buildDir.getAbsolutePath() + '/jacoco/jacocoTest.exec')
+        logger.debug('Looking for JaCoCo jacocoTest.exec file {}', testExecFile)
+        return testExecFile.exists()
+    }
+    jacocoProjects.each { subproject ->
+        executionData subproject.tasks.withType(Test)
+    }
 }

@@ -112,5 +112,3 @@ jacocoTestCoverageVerification {
         }
     }
 }
-
-//enableJacoco(project, 'Debug')

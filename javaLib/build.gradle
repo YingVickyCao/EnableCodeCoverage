@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 //apply plugin: 'java'
 apply plugin: 'jacoco'
-//apply plugin: "org.sonarqube"
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
