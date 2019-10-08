@@ -27,7 +27,7 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
 //        html.enabled true
         html {
@@ -61,4 +61,8 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+plugins.withType(JacocoPlugin){
+    tasks['test'].finalizedBy 'jacocoTestReport'
 }
