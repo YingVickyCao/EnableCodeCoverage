@@ -14,4 +14,6 @@ gradle  clean :app:assembleDebug :app:testDebug :javaLib:test
 // 不生成apk
 gradle  clean :app:testDebug :javaLib:test
 
+gradle  clean :androidLib:testDebug
+
 ```

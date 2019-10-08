@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.yingvickycao.androidlib.Weather;
 import com.github.yingvickycao.javalib.Sum;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.pageB).setOnClickListener(view -> pageB());
         printSum();
+        useAndroidLib();
     }
 
     public void pageB() {
@@ -33,5 +35,9 @@ public class MainActivity extends AppCompatActivity {
         int sum = new Sum().doSum(10, 20);
         sumResult.setText(String.valueOf(sum));
         Log.d(TAG, "printSum: " + sum);
+    }
+
+    public void useAndroidLib() {
+        Log.d(TAG, "useAndroidLib: " + new Weather("A").getInfo());
     }
 }
