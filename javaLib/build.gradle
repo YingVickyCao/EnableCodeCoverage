@@ -34,8 +34,8 @@ jacocoTestReport {
             enabled true
         }
 
-        // TODO: not generate html dir
-        html.destination file("${buildDir}/reports/html")
+        // Use default
+//        html.destination file("${buildDir}/reports/html")
 //        xml.destination file("${buildDir}/reports/xmlReport.xml")
     }
 }
