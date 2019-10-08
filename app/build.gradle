@@ -38,7 +38,7 @@ android {
         version = "0.8.4"
     }
 
-    logger.error("jacoco version=" + jacoco.version)
+//    logger.error("jacoco version=" + jacoco.version)
 
     testOptions {
         unitTests.all {
@@ -130,6 +130,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
         html.enabled = true
     }
 
+
     def mainSrc = "${project.projectDir}/src/main/java/com/github/yingvickycao/enablecodecoverage"
     def executionData_includes = ["jacoco/testDebugUnitTest.exec", "outputs/code-coverage/connected/*coverage.ec"]
     def classDirectories_excludes = ['**/R.class',
@@ -146,12 +147,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
                                      'android/**/*.*',
 //                                     "${buildDir}/intermediates/javac/debugAndroidTest/**",
                                      'jdk.internal.*']
-
+    def java_classes = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: classDirectories_excludes);
+    def kotlin_classes = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
     getSourceDirectories().setFrom(files([mainSrc]))
     getExecutionData().setFrom(fileTree(dir: "$buildDir", includes: executionData_includes))
-    getClassDirectories().setFrom(fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: classDirectories_excludes))
+    getClassDirectories().setFrom(files(java_classes,kotlin_classes))
 }
-
-//plugins.withType(JacocoPlugin){
-//    tasks['test'].finalizedBy 'jacocoTestReport'
-//}
