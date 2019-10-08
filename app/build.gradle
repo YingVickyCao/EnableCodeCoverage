@@ -49,7 +49,7 @@ android {
                 excludes = ['jdk.internal.*']
             }
 
-//            finalizedBy 'jacocoTestReport'
+            finalizedBy 'jacocoTestReport'
         }
     }
 }
@@ -72,9 +72,6 @@ dependencies {
 jacoco {
     toolVersion "0.8.4"
 }
-/**
- * Task generate jacoco test report
- */
 
 final capVariant = "Debug";
 //task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {

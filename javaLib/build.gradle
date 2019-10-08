@@ -62,3 +62,7 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
+plugins.withType(JacocoPlugin){
+    tasks['test'].finalizedBy 'jacocoTestReport'
+}
