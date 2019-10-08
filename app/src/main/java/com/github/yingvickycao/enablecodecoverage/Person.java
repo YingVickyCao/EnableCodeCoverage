@@ -17,5 +17,11 @@ public class Person {
         if (null == stu){
             System.out.println(stu.toString());
         }
+
+        /**
+         * (Constanst.ONE == 1){
+         *  System.out.println(Constanst.ONE);
+         * }
+         */
     }
 }
