@@ -5,6 +5,7 @@ package com.github.yingvickycao.enablecodecoverage;
 public class Person {
     public String name;
     private int n = 3;
+    private int m = 5;
 
     public Person(String name) {
         this.name = name;
@@ -19,8 +20,7 @@ public class Person {
             System.out.println(stu.toString());
         }
 
-        n = 5;
-        n++;
+        n = m;
         /**
          * (Constanst.ONE == 1){
          *  System.out.println(Constanst.ONE);
