@@ -131,7 +131,11 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     }
 
     def mainSrc = "${project.projectDir}/src/main/java/com/github/yingvickycao/enablecodecoverage"
+    def testSrc = "${project.projectDir}/src/test/java/com/github/yingvickycao/enablecodecoverage"
+    def androidTestSrc = "${project.projectDir}/src/androidTest/java/com/github/yingvickycao/enablecodecoverage"
+
     def executionData_includes = ["jacoco/testDebugUnitTest.exec", "outputs/code_coverage/debugAndroidTest/*coverage.ec"]
+
     def classDirectories_excludes = ['**/R.class',
                                      '**/R$*.class',
                                      '**/BuildConfig.*',
@@ -147,9 +151,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
 //                                     "${buildDir}/intermediates/javac/debugAndroidTest/**",
                                      'jdk.internal.*']
     def java_classes = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: classDirectories_excludes);
-    def kotlin_classes = fileTree(dir: "${buildDir}/tmp/kotlin-classes/**/*.class", excludes: classDirectories_excludes);
+    def kotlin_classes = fileTree(dir: "${buildDir}/tmp/kotlin-classes", excludes: classDirectories_excludes);
 
-    getSourceDirectories().setFrom(files([mainSrc]))
+    getSourceDirectories().setFrom(files([mainSrc,testSrc,androidTestSrc]))
     getExecutionData().setFrom(files(executionData_includes))
-    getClassDirectories().setFrom(files(java_classes,kotlin_classes))
+    getClassDirectories().setFrom(files([java_classes,kotlin_classes]))
 }
