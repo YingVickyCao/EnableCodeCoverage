@@ -145,6 +145,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
                                      '**/*$ViewInjector*.*',
                                      'android/**/*.*',
                                      'androidTest/**/*.*',
+                                     "${buildDir}/intermediates/javac/debugAndroidTest/**",
                                      'jdk.internal.*']
 
     getSourceDirectories().setFrom(files([mainSrc]))
