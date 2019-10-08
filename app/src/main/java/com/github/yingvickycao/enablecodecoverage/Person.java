@@ -20,6 +20,10 @@ public class Person {
             System.out.println(stu.toString());
         }
 
+        if (null == stu) {
+            System.out.println(stu.toString());
+        }
+        
         n = m;
         /**
          * (Constanst.ONE == 1){
