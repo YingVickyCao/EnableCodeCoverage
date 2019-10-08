@@ -1,3 +1,5 @@
+
+
 package com.github.yingvickycao.enablecodecoverage;
 
 public class Person {
