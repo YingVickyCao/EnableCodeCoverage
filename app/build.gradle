@@ -130,16 +130,26 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
         html.enabled = true
     }
 
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*','androidTest/**/*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java/com/github/yingvickycao/enablecodecoverage"
+    def executionData_includes = ["jacoco/testDebugUnitTest.exec", "outputs/code-coverage/connected/*coverage.ec"]
+    def classDirectories_excludes = ['**/R.class',
+                                     '**/R$*.class',
+                                     '**/BuildConfig.*',
+                                     '**/Manifest*.*',
+                                     '**/Lambda$*.class',
+                                     '**/Lambda.class',
+                                     '**/*Lambda.class',
+                                     '**/*Lambda*.class',
+                                     '**/*Test*.*',
+                                     '**/*$ViewBinder*.*',
+                                     '**/*$ViewInjector*.*',
+                                     'android/**/*.*',
+                                     'androidTest/**/*.*',
+                                     'jdk.internal.*']
 
     getSourceDirectories().setFrom(files([mainSrc]))
-    getClassDirectories().setFrom(files([debugTree]))
-    getExecutionData().setFrom(fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
-    ]))
+    getExecutionData().setFrom(fileTree(dir: "$buildDir", includes: executionData_includes))
+    getClassDirectories().setFrom(fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: classDirectories_excludes))
 }
 
 //plugins.withType(JacocoPlugin){
