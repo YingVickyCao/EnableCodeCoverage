@@ -46,7 +46,11 @@ android {
                 includeNoLocationClasses = true
                 destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
                 classDumpDir = file("$buildDir/jacoco/classpathdumps")
+                excludes = ['jdk.internal.*']
+
             }
+
+            finalizedBy 'jacocoTestReport'
         }
     }
 }
@@ -70,45 +74,74 @@ jacoco {
     toolVersion "0.8.4"
 }
 
-final capVariant = "Debug";
-task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: "test${capVariant}UnitTest")
-task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["test${capVariant}UnitTest", "create${capVariant}CoverageReport"])
+//final capVariant = "Debug";
+//task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: ["test${capVariant}UnitTest", "create${capVariant}CoverageReport"])
+//task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["test${capVariant}UnitTest", "create${capVariant}CoverageReport"])
+//
+//jacocoTestReport {
+//    reports {
+//        xml.enabled false
+//        csv.enabled false
+////        html.enabled true
+//        html {
+//            enabled true
+//        }
+//
+//        // TODO: not generate html dir
+////        html.destination file("${buildDir}/reports/html")
+////        xml.destination file("${buildDir}/reports/xmlReport.xml")
+//    }
+//}
+//
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            limit {
+//                minimum = 0.5
+//            }
+//        }
+//
+//        rule {
+//            enabled = false
+//
+//
+//            element = 'CLASS'
+//            includes = ['com.github.yingvickycao.enablecodecoverage']
+//
+//            limit {
+//                counter = 'LINE'
+//                value = 'TOTALCOUNT'
+//                maximum = 0.3
+//            }
+//        }
+//    }
+//}
 
-jacocoTestReport {
+/**
+ * Task generate jacoco test report
+ */
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
     reports {
-        xml.enabled false
-        csv.enabled false
-//        html.enabled true
-        html {
-            enabled true
-        }
+        xml.enabled = true
+        // 指定无效
+//        xml.destination file("${buildDir}/reports/jacoco")
 
-        // TODO: not generate html dir
-        html.destination file("${buildDir}/reports/html")
-//        xml.destination file("${buildDir}/reports/xmlReport.xml")
+        html.enabled = true
     }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java/com/github/yingvickycao/enablecodecoverage"
+
+    getSourceDirectories().setFrom(files([mainSrc]))
+    getClassDirectories().setFrom(files([debugTree]))
+    getExecutionData().setFrom(fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ]))
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.5
-            }
-        }
-
-        rule {
-            enabled = false
-
-
-            element = 'CLASS'
-            includes = ['com.github.yingvickycao.enablecodecoverage']
-
-            limit {
-                counter = 'LINE'
-                value = 'TOTALCOUNT'
-                maximum = 0.3
-            }
-        }
-    }
-}
+//plugins.withType(JacocoPlugin){
+//    tasks['test'].finalizedBy 'jacocoTestReport'
+//}
