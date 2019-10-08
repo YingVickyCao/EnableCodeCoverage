@@ -12,8 +12,10 @@ public class Person {
         System.out.println("Person," + name);
         return name;
     }
-    
+
     public void handleStu(Stu stu){
-        System.out.println(stu.toString());
+        if (null == stu){
+            System.out.println(stu.toString());
+        }
     }
 }
