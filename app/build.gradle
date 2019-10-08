@@ -148,7 +148,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
                                      'jdk.internal.*']
     def java_classes = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: classDirectories_excludes);
     def kotlin_classes = fileTree(dir: "${buildDir}/tmp/kotlin-classes/**/*.class", excludes: classDirectories_excludes);
+
     getSourceDirectories().setFrom(files([mainSrc]))
-    getExecutionData().setFrom(fileTree(dir: "$buildDir", includes: executionData_includes))
+    getExecutionData().setFrom(files(executionData_includes))
     getClassDirectories().setFrom(files(java_classes,kotlin_classes))
 }
