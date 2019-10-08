@@ -10,4 +10,8 @@ Enable Android project Code coverage. Repo -> TeamCity -> Sonarqube
 ./gradlew :javaLib:clean :javaLib:test
 /
 gradle :javaLib:clean :javaLib:test
+
+// 生成apk
+gradle clean :app:assembleDebug :app:testDebug :javaLib:test
+
 ```
