@@ -27,7 +27,7 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
 //        html.enabled true
         html {
@@ -35,7 +35,7 @@ jacocoTestReport {
         }
 
         // TODO: not generate html dir
-        html.destination file("${buildDir}/reports/html")
+//        html.destination file("${buildDir}/reports/html")
 //        xml.destination file("${buildDir}/reports/xmlReport.xml")
     }
 }
