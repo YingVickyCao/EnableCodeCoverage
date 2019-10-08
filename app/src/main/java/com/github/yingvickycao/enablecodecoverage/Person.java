@@ -1,7 +1,7 @@
 package com.github.yingvickycao.enablecodecoverage;
 
 public class Person {
-    private String name;
+    public String name;
 
     public Person(String name) {
         this.name = name;
