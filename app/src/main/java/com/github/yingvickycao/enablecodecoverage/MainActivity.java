@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         printSum();
     }
 
-    public void pageB(){
-        Intent intent = new Intent(this,SecondActivity.class);
+    public void pageB() {
+        Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
 
-    public void printSum(){
-        int sum = new Sum().doSum(10,20);
+    public void printSum() {
+        int sum = new Sum().doSum(10, 20);
         sumResult.setText(String.valueOf(sum));
-        Log.d(TAG, "printSum: "+ sum);
+        Log.d(TAG, "printSum: " + sum);
     }
 }

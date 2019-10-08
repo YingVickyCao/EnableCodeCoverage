@@ -9,5 +9,6 @@ public class PersonTest {
     public void getName() {
         Person person = new Person("A");
         Assert.assertEquals("A", person.getName());
+        person.handleStu(new Stu("stu"));
     }
 }

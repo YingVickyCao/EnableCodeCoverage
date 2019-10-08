@@ -34,7 +34,7 @@ jacocoTestReport {
             enabled true
         }
 
-        // Use default
+        // TODO: not generate html dir
 //        html.destination file("${buildDir}/reports/html")
 //        xml.destination file("${buildDir}/reports/xmlReport.xml")
     }
@@ -61,8 +61,4 @@ jacocoTestCoverageVerification {
             }
         }
     }
-}
-
-plugins.withType(JacocoPlugin){
-    tasks['test'].finalizedBy 'jacocoTestReport'
 }
