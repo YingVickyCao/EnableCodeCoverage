@@ -11,8 +11,6 @@ public class Person {
     }
 
     public String getName() {
-        System.out.println("Person," + name);
-        System.out.println("Person," + name);
         return name;
     }
 
