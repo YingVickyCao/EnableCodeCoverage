@@ -1,8 +1,5 @@
 package com.github.yingvickycao.enablecodecoverage;
 
-
-import android.util.Log;
-
 public class Person {
     private String name;
 
@@ -11,8 +8,8 @@ public class Person {
     }
 
     public String getName() {
-        Log.d("Person", "getName: "+ name);
-        Log.d("Person", "getName: "+ name);
+        System.out.println("Person," + name);
+        System.out.println("Person," + name);
         return name;
     }
 }
