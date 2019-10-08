@@ -28,14 +28,33 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    jacoco {
+        // 0.7.9
+        version = "0.8.4"
+    }
+
     testOptions {
         unitTests.all {
             jvmArgs '-noverify'
+
+            jacoco {
+                includeNoLocationClasses = true
+                destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+                classDumpDir = file("$buildDir/jacoco/classpathdumps")
+                excludes = ['jdk.internal.*']
+            }
+
+            finalizedBy 'jacocoTestReport'
         }
+
         unitTests {
             includeAndroidResources = true
         }
-
         unitTests.returnDefaultValues = true
     }
 
@@ -52,11 +71,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
 
 final capVariant = "Debug";
 task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: "test${capVariant}UnitTest") {
