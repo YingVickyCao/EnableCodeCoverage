@@ -21,20 +21,49 @@ test {
     }
 }
 
-//jacoco {
-//    toolVersion = "0.8.1"
+//jacocoTestReport {
+//    reports {
+//        xml.enabled true    // default = false
+////        csv.enabled true
+//        html.enabled true // default = true
+//    }
+//
 //}
-
 
 jacocoTestReport {
     reports {
         xml.enabled true    // default = false
 //        csv.enabled true
-        html.enabled false // default = true
+        html.enabled true // default = true
     }
+
+    def sourceDirectories_java = "${project.projectDir}/src/main/java"
+    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
+
+    def classDirectories_excludes = ['**/R.class',
+                                     '**/R$*.class',
+                                     '**/BuildConfig.*',
+                                     '**/Manifest*.*',
+                                     '**/Lambda$*.class',
+                                     '**/Lambda.class',
+                                     '**/*Lambda.class',
+                                     '**/*Lambda*.class',
+                                     '**/*Test*.*',
+                                     '**/*$ViewBinder*.*',
+                                     '**/*$ViewInjector*.*',
+                                     'android/**/*.*',
+                                     '**/*Activity.*',
+                                     '**/*Fragment.*']
+
+    def classDirectories_java = fileTree(dir: "${buildDir}/classes/java", excludes: classDirectories_excludes);
+    def classDirectories_kotlin = fileTree(dir: "${buildDir}/classes/kotlin", excludes: classDirectories_excludes);
+
+    classDirectories = files([classDirectories_java, classDirectories_kotlin])
+    sourceDirectories = files([sourceDirectories_java])
+//    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
+    executionData = files(executionData_includes)  // raw coverage data file
 }
 
-
-plugins.withType(JacocoPlugin){
+plugins.withType(JacocoPlugin) {
     tasks['test'].finalizedBy 'jacocoTestReport'
 }

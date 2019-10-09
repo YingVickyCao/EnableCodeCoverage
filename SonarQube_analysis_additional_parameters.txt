@@ -12,3 +12,8 @@
 -Dsonar.scm.forceReloadAll=true
 -Dsonar.sourceEncoding=UTF-8
 -X
+
+
+
+
+javaLib/build/reports/jacoco/test/jacocoTestReport.xml
