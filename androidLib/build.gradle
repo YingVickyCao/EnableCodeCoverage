@@ -101,6 +101,6 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 
     classDirectories = files([classDirectories_java, classDirectories_kotlin])
     sourceDirectories = files([sourceDirectories_java])
-//    additionalSourceDirs = files([sourceDirectories_java])
+//    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
     executionData = files(executionData_includes)  // raw coverage data file
 }
