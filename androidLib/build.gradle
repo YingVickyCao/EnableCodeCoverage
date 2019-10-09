@@ -33,11 +33,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-    jacoco {
-        // 0.7.9
-        version = "0.8.4"
-    }
-
     testOptions {
         unitTests.all {
             jvmArgs '-noverify'

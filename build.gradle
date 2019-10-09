@@ -13,7 +13,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//        classpath "org.jacoco:org.jacoco.core:0.8.2"
+        classpath "org.jacoco:org.jacoco.core:0.8.4"
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8"
     }
 }
@@ -29,20 +29,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-//sonarqube {
-//    properties {
-//        property 'sonar.projectName', 'Example of SonarQube Scanner for Gradle Usage'
-//        property "sonar.sourceEncoding", "UTF-8"
-//
-//    }
-//}
-
-//subprojects {
-//    sonarqube {
-//        properties {
-//            property "sonar.sources", "src"
-//        }
-//        androidVariant 'debug'
-//    }
-//}
