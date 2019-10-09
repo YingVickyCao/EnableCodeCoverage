@@ -98,8 +98,7 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
                                      '**/*$ViewInjector*.*',
                                      'android/**/*.*',
                                      '**/*Activity.*',
-                                     '**/*Fragment.*',
-                                     'jdk.internal.*']
+                                     '**/*Fragment.*']
     def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: classDirectories_excludes);
     def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
 
