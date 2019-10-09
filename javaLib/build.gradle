@@ -16,6 +16,7 @@ test {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
+    finalizedBy 'jacocoTestReport'
 }
 
 jacoco {
@@ -32,11 +33,6 @@ jacocoTestReport {
         }
     }
 }
-
-plugins.withType(JacocoPlugin) {
-    tasks['test'].finalizedBy 'jacocoTestReport'
-}
-
 //jacocoTestCoverageVerification {
 //    violationRules {
 //        rule {
