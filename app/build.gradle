@@ -83,8 +83,8 @@ dependencies {
 task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
     reports {
         xml.enabled true
-        csv.enabled true
-        html.enabled true
+//        csv.enabled true
+//        html.enabled true
     }
 
     def sourceDirectories_java = "${project.projectDir}/src/main/java"
