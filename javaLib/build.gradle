@@ -12,8 +12,6 @@ dependencies {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-//logger.error("jacoco version="+jacoco.version)
-
 test {
     jacoco {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
@@ -32,34 +30,9 @@ jacocoTestReport {
         html {
             enabled true
         }
-
-        // TODO: not generate html dir
-//        html.destination file("${buildDir}/reports/html")
-//        xml.destination file("${buildDir}/reports/xmlReport.xml")
     }
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.5
-            }
-        }
-
-        rule {
-            enabled = false
-            element = 'CLASS'
-            includes = ['com.github.yingvickycao.javalib']
-
-            limit {
-                counter = 'LINE'
-                value = 'TOTALCOUNT'
-                maximum = 0.3
-            }
-        }
-    }
-}
 
 plugins.withType(JacocoPlugin){
     tasks['test'].finalizedBy 'jacocoTestReport'
