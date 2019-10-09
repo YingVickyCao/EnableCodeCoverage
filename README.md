@@ -23,4 +23,6 @@ gradle  clean :app:testDebug :androidLib:testDebug :javaLib:test
 // 生成apk
 gradle  clean :app:assembleDebug :app:testDebug :androidLib:testDebug :javaLib:test
 
+gradle  :javaLib:clean :javaLib:test :javaLib:jacocoTestReport
+
 ```
