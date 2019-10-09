@@ -32,6 +32,28 @@ jacocoTestReport {
             enabled true
         }
     }
+
+    def sourceDirectories_java = "${project.projectDir}/src/main/java"
+    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
+
+    def classDirectories_excludes = ['**/R.class',
+                                     '**/R$*.class',
+                                     '**/BuildConfig.*',
+                                     '**/Lambda$*.class',
+                                     '**/Lambda.class',
+                                     '**/*Lambda.class',
+                                     '**/*Lambda*.class',
+                                     '**/*Test*.*',
+                                     '**/*$ViewBinder*.*',
+                                     '**/*$ViewInjector*.*',]
+    def classDirectories_java = fileTree(dir: "${buildDir}/classes/java", excludes: classDirectories_excludes);
+//    def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
+
+//    classDirectories = files([classDirectories_java, classDirectories_kotlin])
+    classDirectories = files([classDirectories_java])
+    sourceDirectories = files([sourceDirectories_java])
+//    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
+    executionData = files(executionData_includes)  // raw coverage data file
 }
 //jacocoTestCoverageVerification {
 //    violationRules {

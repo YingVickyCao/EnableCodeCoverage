@@ -83,7 +83,10 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
     }
 
     def sourceDirectories_java = "${project.projectDir}/src/main/java"
-    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec" /* , "$buildDir/reports/coverage/debug/report.xml", "$buildDir/outputs/code-coverage/connected/initmvp_coverage.ec"*/]
+    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
+
+//    logger.error("$buildDir=" + "$buildDir")  // /androidLib/build
+//    logger.error("${project.projectDir}=" + "${project.projectDir}") // /androidLib
 
     def classDirectories_excludes = ['**/R.class',
                                      '**/R$*.class',
