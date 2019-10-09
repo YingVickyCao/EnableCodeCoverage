@@ -1,8 +1,10 @@
--Dsonar.java.binaries=**/build/intermediates/classes/debug,**/build/tmp/kotlin-classes/debug,javaLib/build/classes
+-Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml,javaLib/build/reports/jacoco/test/jacocoTestReport.xml,androidLib/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+-Dsonar.java.binaries=app/build/intermediates/classes/debug/,app/build/tmp/kotlin-classes/debug/,javaLib/build/classes/,androidLib/build/intermediates/classes/debug/,androidLib/build/tmp/kotlin-classes/debug
+-Dsonar.tests=app/src/test/java,javaLib/src/test/java,androidLib/src/test/java
+-Dsonar.sources=app/src/main/java,javaLib/src/main/java,androidLib/src/main/java
+-Dsonar.exclusions=/**/gen/**/*,/**/build/**/*
 -Dsonar.login=%env.sonarLogin%
 -Dsonar.password=%env.sonarPassword%
--Dsonar.exclusions=/**/gen/**/*,/**/build/**/*
--Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml,javaLib/build/reports/jacoco/test/jacocoTestReport.xml,androidLib/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
 -Dsonar.scm.disable=false
 -Dsonar.scm.url=http://github.com/YingVickyCao/AUtils/tree/master
 -Dsonar.scm.connection=scm:git:ssh://github.com:YingVickyCao/AUtils.git
