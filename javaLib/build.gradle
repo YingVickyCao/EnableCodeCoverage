@@ -19,9 +19,9 @@ test {
     finalizedBy 'jacocoTestReport'
 }
 
-jacoco {
-    toolVersion = "0.8.4"
-}
+//jacoco {
+//    toolVersion = "0.8.4"
+//}
 
 jacocoTestReport {
     reports {
