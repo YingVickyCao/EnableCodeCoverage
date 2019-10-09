@@ -1,4 +1,4 @@
--Dsonar.java.binaries=app/build/intermediates/classes/debug/,app/build/tmp/kotlin-classes/debug/,javaLib/build/classes/,androidLib/build/intermediates/classes/debug/,androidLib/build/tmp/kotlin-classes/debug
+-Dsonar.java.binaries=**/build/intermediates/classes/debug,**/build/tmp/kotlin-classes/debug,javaLib/build/classes
 -Dsonar.login=%env.sonarLogin%
 -Dsonar.password=%env.sonarPassword%
 -Dsonar.exclusions=/**/gen/**/*,/**/build/**/*
