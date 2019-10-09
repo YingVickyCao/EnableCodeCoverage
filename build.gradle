@@ -1,5 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: './enable-jacoco.gradle'
 apply plugin: "org.sonarqube"
 //apply plugin: 'android-reporting'
 
