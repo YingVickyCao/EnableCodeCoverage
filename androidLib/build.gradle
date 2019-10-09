@@ -72,6 +72,12 @@ dependencies {
 
 
 task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.enabled true
+    }
+
     def sourceDirectories_java = "${project.projectDir}/src/main/java"
     def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec" /* , "$buildDir/reports/coverage/debug/report.xml", "$buildDir/outputs/code-coverage/connected/initmvp_coverage.ec"*/]
 
@@ -95,14 +101,6 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 
     classDirectories = files([classDirectories_java, classDirectories_kotlin])
     sourceDirectories = files([sourceDirectories_java])
-    additionalSourceDirs = files([sourceDirectories_java])
+//    additionalSourceDirs = files([sourceDirectories_java])
     executionData = files(executionData_includes)  // raw coverage data file
-
-    reports {
-        xml.enabled true
-        csv.enabled true
-        html.enabled true
-    }
-
-
 }
