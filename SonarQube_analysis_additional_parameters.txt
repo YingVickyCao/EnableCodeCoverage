@@ -1,0 +1,12 @@
+-Dsonar.java.binaries=app/build/intermediates/classes/debug/,app/build/tmp/kotlin-classes/debug/,javaLib/build/classes/,androidLib/build/intermediates/classes/debug/,androidLib/build/tmp/kotlin-classes/debug
+-Dsonar.login=%env.sonarLogin%
+-Dsonar.password=%env.sonarPassword%
+-Dsonar.exclusions=/**/gen/**/*,/**/build/**/*
+-Dsonar.coverage.jacoco.xmlReportPaths=app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml,javaLib/build/reports/jacoco/test/jacocoTestReport.xml,androidLib/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+-Dsonar.scm.disable=false
+-Dsonar.scm.url=http://github.com/YingVickyCao/AUtils/tree/master
+-Dsonar.scm.connection=scm:git:ssh://github.com:YingVickyCao/AUtils.git
+-Dsonar.scm.developerConnection=scm:git:ssh://github.com:YingVickyCao/AUtils.git
+-Dsonar.scm.forceReloadAll=true
+-Dsonar.sourceEncoding=UTF-8
+-X
