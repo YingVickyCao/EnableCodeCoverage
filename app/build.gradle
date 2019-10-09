@@ -84,11 +84,11 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
     reports {
         xml.enabled true
 //        csv.enabled true
-        html.enabled false
+        html.enabled true
     }
 
     def sourceDirectories_java = "${project.projectDir}/src/main/java"
-    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec" /* , "$buildDir/reports/coverage/debug/report.xml", "$buildDir/outputs/code-coverage/connected/initmvp_coverage.ec"*/]
+    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
 
     def classDirectories_excludes = ['**/R.class',
                                      '**/R$*.class',
@@ -103,6 +103,7 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
                                      '**/*$ViewInjector*.*',
                                      'android/**/*.*',
                                      '**/*Activity.*',
+                                     '**/*Activity.class',
                                      '**/*Fragment.*']
     def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: classDirectories_excludes);
     def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
@@ -112,3 +113,28 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 //    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
     executionData = files(executionData_includes)  // raw coverage data file
 }
+//
+//task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["testDebugUnitTest"]) {
+//    violationRules {
+//        rule {
+//            limit {
+//                minimum = 0.5
+//            }
+//        }
+//
+//        rule {
+//            enabled = false
+//
+//
+//            element = 'CLASS'
+//            includes = ['com.github.yingvickycao.enablecodecoverage']
+//
+//            limit {
+//                counter = 'LINE'
+//                value = 'TOTALCOUNT'
+//                maximum = 0.3
+//            }
+//        }
+//    }
+//}
+//
