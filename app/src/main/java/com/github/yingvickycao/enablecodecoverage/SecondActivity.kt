@@ -29,7 +29,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     fun c2() {
-        val plus = C2().doSum(10, 20);
-        Log.d(TAG, "c1: $plus")
+//        val plus = C2().doSum(10, 20);
+//        Log.d(TAG, "c1: $plus")
     }
 }
