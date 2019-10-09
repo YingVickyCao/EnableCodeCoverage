@@ -29,7 +29,6 @@ jacocoTestReport {
     reports {
         xml.enabled true
         csv.enabled false
-//        html.enabled true
         html {
             enabled true
         }
@@ -51,7 +50,6 @@ jacocoTestCoverageVerification {
         rule {
             enabled = false
             element = 'CLASS'
-//            includes = ['org.gradle.*']
             includes = ['com.github.yingvickycao.javalib']
 
             limit {
