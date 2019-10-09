@@ -20,4 +20,7 @@ gradle  clean :androidLib:testDebug
 gradle  :javaLib:clean :javaLib:test
 
 gradle  :androidLib:clean  :androidLib:testDebug
+
+gradle  :app:clean  :app:testDebug
+
 ```
