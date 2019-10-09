@@ -18,11 +18,9 @@ gradle  :androidLib:clean  :androidLib:testDebug
 
 gradle  :app:clean  :app:testDebug
 
-gradle  clean :javaLib:test :app:testDebug :androidLib:testDebug 
+gradle clean :app:testDebug :androidLib:testDebug :javaLib:test 
 
 // 生成apk
 gradle  clean :app:assembleDebug :app:testDebug :androidLib:testDebug :javaLib:test
-
-gradle  :javaLib:clean :javaLib:test :javaLib:jacocoTestReport
 
 ```
