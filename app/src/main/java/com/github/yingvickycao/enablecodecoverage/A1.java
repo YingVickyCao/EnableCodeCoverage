@@ -2,12 +2,12 @@
 
 package com.github.yingvickycao.enablecodecoverage;
 
-public class Person {
+public class A1 {
     public String name;
     private int n = 3;
     private int m = 5;
 
-    public Person(String name) {
+    public A1(String name) {
         this.name = name;
     }
 
@@ -15,13 +15,13 @@ public class Person {
         return name;
     }
 
-    public void handleStu(Stu stu) {
-        if (null == stu) {
-            System.out.println(stu.toString());
+    public void handleInfo(String info) {
+        if (null == info) {
+            System.out.println(info.toString());
         }
 
-        if (null == stu) {
-            System.out.println(stu.toString());
+        if (null == info) {
+            System.out.println(info.toString());
         }
         
         n = m;

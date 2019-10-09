@@ -1,3 +1,3 @@
 package com.github.yingvickycao.enablecodecoverage
 
-class Stu(val name: String)
+class A2(val name: String)

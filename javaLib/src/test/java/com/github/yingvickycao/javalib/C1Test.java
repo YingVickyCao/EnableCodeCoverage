@@ -3,10 +3,11 @@ package com.github.yingvickycao.javalib;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SumTest {
+
+public class C1Test {
 
     @Test
-    public void doSum() {
-        Assert.assertEquals(5, new Sum().doSum(1,4));
+    public void plus() {
+        Assert.assertEquals(2,new C1().plus(1));
     }
 }
