@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.github.yingvickycao.androidlib.B2
-import com.github.yingvickycao.javalib.C2
+//import com.github.yingvickycao.javalib.C2
 
 class SecondActivity : AppCompatActivity() {
     private val TAG = "SecondActivity"
