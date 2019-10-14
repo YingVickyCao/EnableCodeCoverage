@@ -3,12 +3,11 @@ package com.github.yingvickycao.javalib;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
-public class PlusTest {
+public class C1Test {
 
     @Test
     public void plus() {
-        Assert.assertEquals(2,new Plus().plus(1));
+        Assert.assertEquals(2,new C1().plus(1));
     }
 }

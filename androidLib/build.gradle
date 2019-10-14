@@ -1,22 +1,23 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
 //apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
+
+
     defaultConfig {
-        applicationId "com.github.yingvickycao.enablecodecoverage"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -24,8 +25,7 @@ android {
         }
 
         debug {
-            minifyEnabled false
-            testCoverageEnabled = true
+            testCoverageEnabled true
         }
     }
 
@@ -34,19 +34,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-//    logger.error("jacoco version=" + jacoco.version)
-
     testOptions {
-        unitTests.all {
-            jvmArgs '-noverify'
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled true
 
+        unitTests {
+            includeAndroidResources = true
+        }
+
+        unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
                 destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
                 classDumpDir = file("$buildDir/jacoco/classpathdumps")
                 excludes = ['jdk.internal.*']
             }
-
             finalizedBy 'jacocoTestReport'
         }
 
@@ -56,39 +58,35 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
+//    lintOptions {
+//        abortOnError false
+//    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":javaLib")
-    implementation project(':androidLib')
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-
-//final capVariant = "Debug";
-//task jacocoTestReport(type: JacocoReport, dependsOn: ['test${capVariant}UnitTest', 'createDebugCoverageReport']) {
 
 task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
     reports {
         xml.enabled true
 //        csv.enabled true
-        html.enabled true
+        html.enabled false
     }
 
     def sourceDirectories_java = "${project.projectDir}/src/main/java"
     def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
+
+//    logger.error("$buildDir=" + "$buildDir")  // /androidLib/build
+//    logger.error("${project.projectDir}=" + "${project.projectDir}") // /androidLib
 
     def classDirectories_excludes = ['**/R.class',
                                      '**/R$*.class',
@@ -103,7 +101,6 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
                                      '**/*$ViewInjector*.*',
                                      'android/**/*.*',
                                      '**/*Activity.*',
-                                     '**/*Activity.class',
                                      '**/*Fragment.*']
     def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: classDirectories_excludes);
     def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
@@ -113,28 +110,3 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 //    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
     executionData = files(executionData_includes)  // raw coverage data file
 }
-//
-//task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["testDebugUnitTest"]) {
-//    violationRules {
-//        rule {
-//            limit {
-//                minimum = 0.5
-//            }
-//        }
-//
-//        rule {
-//            enabled = false
-//
-//
-//            element = 'CLASS'
-//            includes = ['com.github.yingvickycao.enablecodecoverage']
-//
-//            limit {
-//                counter = 'LINE'
-//                value = 'TOTALCOUNT'
-//                maximum = 0.3
-//            }
-//        }
-//    }
-//}
-//

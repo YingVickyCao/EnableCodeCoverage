@@ -1,8 +1,10 @@
 package com.github.yingvickycao.enablecodecoverage
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.github.yingvickycao.androidlib.B2
+import com.github.yingvickycao.javalib.C2
 
 class SecondActivity : AppCompatActivity() {
     private val TAG = "SecondActivity"
@@ -11,12 +13,23 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_b)
 
-        initStu();
+        a2();
+        b2();
+        c2();
     }
 
-    fun initStu(): Stu {
-        val stu = Stu("S")
-        Log.d(TAG, "initStu: " + stu.name)
-        return stu
+
+    fun a2() {
+        val a2 = A2("a1")
+        Log.d(TAG, "a2: " + a2.name);
+    }
+
+    fun b2() {
+        Log.d(TAG, "b2: " + B2(2).b2Value);
+    }
+
+    fun c2() {
+        val plus = C2().doSum(10, 20);
+        Log.d(TAG, "c1: $plus")
     }
 }
