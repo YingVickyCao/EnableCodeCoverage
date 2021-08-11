@@ -1,8 +1,8 @@
 package com.github.yingvickycao.enablecodecoverage
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.github.yingvickycao.androidlib.B2
 import com.github.yingvickycao.javalib.C2
 
