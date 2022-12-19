@@ -11,6 +11,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 test {
     jacoco {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
