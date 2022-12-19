@@ -7,21 +7,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
 
 android {
-<<<<<<< HEAD
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-    defaultConfig {
-        applicationId "com.github.yingvickycao.enablecodecoverage"
-        minSdkVersion 23
-        targetSdkVersion 30
-=======
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.github.yingvickycao.enablecodecoverage"
         minSdkVersion 26
         targetSdkVersion 31
->>>>>>> 7fe5bd742063bd890f8cfe1beed78a89a79cdc9f
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -76,25 +67,13 @@ dependencies {
     implementation project(':androidLib')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-<<<<<<< HEAD
     implementation 'androidx.appcompat:appcompat:1.2.0'
-=======
-    implementation 'androidx.appcompat:appcompat:1.0.0'
->>>>>>> 7fe5bd742063bd890f8cfe1beed78a89a79cdc9f
 
     testImplementation 'junit:junit:4.13.2'
 
-//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-//    androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-<<<<<<< HEAD
-=======
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
->>>>>>> 7fe5bd742063bd890f8cfe1beed78a89a79cdc9f
 }
 
 
@@ -128,12 +107,6 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
     def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: classDirectories_excludes);
     def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
 
-<<<<<<< HEAD
-    getClassDirectories().setFrom(files([classDirectories_java, classDirectories_kotlin]));
-    getSourceDirectories().setFrom(files([sourceDirectories_java]))
-    getExecutionData().setFrom(files(executionData_includes) ) // raw coverage data file
-}
-=======
     getClassDirectories().from([classDirectories_java, classDirectories_kotlin])
     getSourceDirectories().from([sourceDirectories_java])
 //    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
@@ -164,4 +137,3 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 //    }
 //}
 //
->>>>>>> 7fe5bd742063bd890f8cfe1beed78a89a79cdc9f
