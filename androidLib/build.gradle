@@ -4,22 +4,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
 
 android {
-<<<<<<< HEAD
-    compileSdkVersion 30
-=======
     compileSdkVersion 31
->>>>>>> 7fe5bd742063bd890f8cfe1beed78a89a79cdc9f
     buildToolsVersion "30.0.3"
 
 
     defaultConfig {
-<<<<<<< HEAD
-        minSdkVersion 23
-        targetSdkVersion 30
-=======
         minSdkVersion 26
         targetSdkVersion 31
->>>>>>> 7fe5bd742063bd890f8cfe1beed78a89a79cdc9f
         versionCode 1
         versionName "1.0"
 
