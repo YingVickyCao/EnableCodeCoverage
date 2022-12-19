@@ -28,11 +28,11 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.required true
-        csv.required false
-//        html.required true
+        xml.enabled true
+        csv.enabled false
+//        html.enabled true
         html {
-            required true
+            enabled true
         }
     }
 
