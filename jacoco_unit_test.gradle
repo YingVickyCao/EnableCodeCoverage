@@ -1,0 +1,60 @@
+apply plugin: 'jacoco'
+
+
+android{
+    testOptions {
+        unitTests.all {
+            jvmArgs '-noverify'
+
+            jacoco {
+                includeNoLocationClasses = true
+                destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+                classDumpDir = file("$buildDir/jacoco/classpathdumps")
+                excludes = ['jdk.internal.*']
+            }
+
+            finalizedBy 'jacocoTestReport'
+        }
+
+        unitTests {
+            includeAndroidResources = false
+            returnDefaultValues = true
+        }
+    }
+}
+
+//final capVariant = "Debug";
+//task jacocoTestReport(type: JacocoReport, dependsOn: ['test${capVariant}UnitTest', 'createDebugCoverageReport']) {
+task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    reports {
+        xml.enabled true
+//        csv.enabled true
+        html.enabled true
+    }
+
+    def sourceDirectories_java = "${project.projectDir}/src/main/java"
+    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
+
+    def classDirectories_excludes = ['**/R.class',
+                                     '**/R$*.class',
+                                     '**/BuildConfig.*',
+                                     '**/Manifest*.*',
+                                     '**/Lambda$*.class',
+                                     '**/Lambda.class',
+                                     '**/*Lambda.class',
+                                     '**/*Lambda*.class',
+                                     '**/*Test*.*',
+                                     '**/*$ViewBinder*.*',
+                                     '**/*$ViewInjector*.*',
+                                     'android/**/*.*',
+                                     '**/*Activity.*',
+                                     '**/*Activity.class',
+                                     '**/*Fragment.*']
+    def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/javac/debug/classes/", excludes: classDirectories_excludes);
+    def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug/", excludes: classDirectories_excludes);
+
+    getClassDirectories().from([classDirectories_java, classDirectories_kotlin])
+    getSourceDirectories().from([sourceDirectories_java])
+//    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
+    getExecutionData().from(executionData_includes)  // raw coverage data file
+}
