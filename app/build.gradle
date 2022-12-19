@@ -13,6 +13,7 @@ android {
             keyPassword '123456'
         }
     }
+
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
     defaultConfig {
@@ -24,7 +25,6 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
-
     buildTypes {
         release {
             minifyEnabled false
@@ -33,7 +33,7 @@ android {
 
         debug {
             minifyEnabled false
-            testCoverageEnabled = true
+            testCoverageEnabled true
         }
     }
 
@@ -60,6 +60,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
 }
