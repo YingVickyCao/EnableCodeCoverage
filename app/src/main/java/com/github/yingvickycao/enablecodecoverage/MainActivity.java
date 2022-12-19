@@ -2,9 +2,10 @@ package com.github.yingvickycao.enablecodecoverage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.yingvickycao.androidlib.B1;
 import com.github.yingvickycao.javalib.C1;
