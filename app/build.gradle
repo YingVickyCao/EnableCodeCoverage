@@ -114,8 +114,8 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
                                      '**/*Activity.*',
                                      '**/*Activity.class',
                                      '**/*Fragment.*']
-    def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/javac/debug/classes", excludes: classDirectories_excludes);
-    def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
+    def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/javac/debug/classes/", excludes: classDirectories_excludes);
+    def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug/", excludes: classDirectories_excludes);
 
     getClassDirectories().from([classDirectories_java, classDirectories_kotlin])
     getSourceDirectories().from([sourceDirectories_java])
