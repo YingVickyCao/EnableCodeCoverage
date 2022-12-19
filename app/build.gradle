@@ -114,7 +114,7 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
                                      '**/*Activity.*',
                                      '**/*Activity.class',
                                      '**/*Fragment.*']
-    def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: classDirectories_excludes);
+    def classDirectories_java = fileTree(dir: "${buildDir}/intermediates/javac/debug/classes", excludes: classDirectories_excludes);
     def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: classDirectories_excludes);
 
     getClassDirectories().from([classDirectories_java, classDirectories_kotlin])
@@ -122,28 +122,3 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 //    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
     getExecutionData().from(executionData_includes)  // raw coverage data file
 }
-//
-//task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["testDebugUnitTest"]) {
-//    violationRules {
-//        rule {
-//            limit {
-//                minimum = 0.5
-//            }
-//        }
-//
-//        rule {
-//            enabled = false
-//
-//
-//            element = 'CLASS'
-//            includes = ['com.github.yingvickycao.enablecodecoverage']
-//
-//            limit {
-//                counter = 'LINE'
-//                value = 'TOTALCOUNT'
-//                maximum = 0.3
-//            }
-//        }
-//    }
-//}
-//
