@@ -107,7 +107,7 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
     def classDirectories_kotlin = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug/", excludes: classDirectories_excludes);
 
     getClassDirectories().from([classDirectories_java, classDirectories_kotlin])
-    getSourceDirectories().from([[sourceDirectories_java]])
+    getSourceDirectories().from([sourceDirectories_java])
 //    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
     getExecutionData().from(executionData_includes)// raw coverage data file
 }
