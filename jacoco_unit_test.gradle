@@ -1,6 +1,5 @@
 apply plugin: 'jacoco'
 
-
 android{
     testOptions {
         unitTests.all {
@@ -34,6 +33,12 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 
     def sourceDirectories_java = "${project.projectDir}/src/main/java"
     def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
+
+    logger.error("$buildDir=" + "$buildDir")
+    logger.error("${project.projectDir}=" + "${project.projectDir}")
+    logger.error(sourceDirectories_java);
+    logger.error(executionData_includes.toListString());
+
 
     def classDirectories_excludes = ['**/R.class',
                                      '**/R$*.class',
