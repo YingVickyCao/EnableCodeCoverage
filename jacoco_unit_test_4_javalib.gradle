@@ -20,7 +20,7 @@ jacocoTestReport {
         csv.enabled false
 //        html.enabled true
         html {
-            enabled false
+            enabled true
             destinationFile file("$buildDir/reports/html")
         }
     }
