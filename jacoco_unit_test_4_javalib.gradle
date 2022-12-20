@@ -5,7 +5,7 @@ test {
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
         includes = ['com.github.yingvickycao.javalib.*']
     }
-    finalizedBy 'jacocoTestReport'
+//    finalizedBy 'jacocoTestReport'
 }
 
 //jacoco {
@@ -14,7 +14,7 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
+        xml.enabled false
         csv.enabled false
 //        html.enabled true
 //        html {
