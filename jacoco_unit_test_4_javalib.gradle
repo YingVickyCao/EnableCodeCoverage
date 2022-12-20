@@ -1,11 +1,9 @@
 apply plugin: 'jacoco'
-
 test {
     jacoco {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
         includes = ['com.github.yingvickycao.javalib.*']
-
     }
     finalizedBy 'jacocoTestReport'
 }
@@ -16,13 +14,13 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled false
+        xml.enabled true
         csv.enabled false
 //        html.enabled true
-        html {
-            enabled true
-            destinationFile file("$buildDir/reports/html")
-        }
+//        html {
+//            enabled true
+//        }
+        html.destination file("${buildDir}/reports/html")
     }
 
     //    def sourceDirectories_java = "${project.projectDir}/src/main/java"
@@ -54,13 +52,11 @@ jacocoTestCoverageVerification {
                 minimum = 0.5
             }
         }
-
         rule {
             enabled = false
             element = 'CLASS'
 //            includes = ['org.gradle.*']
             includes = ['com.github.yingvickycao.javalib.*']
-
             limit {
                 counter = 'LINE'
                 value = 'TOTALCOUNT'
