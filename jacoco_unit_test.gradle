@@ -63,3 +63,29 @@ task jacocoTestReport(name: 'jacocoTestReport', type: JacocoReport, dependsOn: [
 //    additionalSourceDirs = files([sourceDirectories_java]) // add pre/after, no changes
     getExecutionData().from(executionData_includes)  // raw coverage data file
 }
+
+//
+//task jacocoTestCoverageVerification(name: 'jacocoTestCoverageVerification', type: JacocoCoverageVerification, dependsOn: ["testDebugUnitTest"]) {
+//    violationRules {
+//        rule {
+//            limit {
+//                minimum = 0.5
+//            }
+//        }
+//
+//        rule {
+//            enabled = false
+//
+//
+//            element = 'CLASS'
+//            includes = ['com.github.yingvickycao.enablecodecoverage']
+//
+//            limit {
+//                counter = 'LINE'
+//                value = 'TOTALCOUNT'
+//                maximum = 0.3
+//            }
+//        }
+//    }
+//}
+//
