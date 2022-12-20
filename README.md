@@ -15,9 +15,9 @@ gradle clean :app:assembleRelease :app:testRelease :androidLib:testRelease :java
 ```
 
 # Newest testing on 2022-12-20
-branch = master
-TeamCity Professional 2022.10.1 (build 116934)
-SonarQube Community EditionVersion 8.9.10 (build 61524)
+branch = master <br/>
+TeamCity Professional 2022.10.1 (build 116934) <br/>
+SonarQube Community EditionVersion 8.9.10 (build 61524) <br/>
 
 
 # Refs
