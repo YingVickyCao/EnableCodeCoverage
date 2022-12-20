@@ -5,22 +5,20 @@
 `./gradlew / gradle`
 ```
 
-gradle  clean :app:testDebug :javaLib:test
-
-gradle  :javaLib:clean :javaLib:test
-
-gradle  :androidLib:clean  :androidLib:testDebug
-
-gradle  :app:clean  :app:testDebug
-
 // 不生成apk
-gradle clean :app:testDebug :androidLib:testDebug :javaLib:test 
+gradle clean :app:testDebug :androidLib:testDebug :javaLib:test
+gradle clean :app:testRelease :androidLib:testRelease :javaLib:test
 
 // 生成apk
-gradle  clean :app:assembleDebug :app:testDebug :androidLib:testDebug :javaLib:test
-
+gradle clean :app:assembleDebug :app:testDebug :androidLib:testDebug :javaLib:test
+gradle clean :app:assembleRelease :app:testRelease :androidLib:testRelease :javaLib:test
 ```
+
+# Newest testing on 2022-12-20
+branch = master
+TeamCity Professional 2022.10.1 (build 116934)
+SonarQube Community EditionVersion 8.9.10 (build 61524)
 
 
 # Refs
-- [TeamCity CI](https://github.com/YingVickyCao/YingVickyCao.github.io/blob/master/doc/tools/teamcity/TeamCity_CI_setup.md)
+- [TeamCity CI](https://github.com/YingVickyCao/YingVickyCao.github.io/blob/master/doc/tools/teamcity/Readme.md)
