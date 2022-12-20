@@ -3,7 +3,9 @@ test {
     jacoco {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
-        includes = ['com.github.yingvickycao.javalib.*']
+
+        // 注释掉也能成功
+//        includes = ['com.github.yingvickycao.javalib.*']
     }
     finalizedBy 'jacocoTestReport'
 }
@@ -17,12 +19,16 @@ jacocoTestReport {
         xml.enabled true
         csv.enabled false
 //        html.enabled true
+
+        // 注释掉也能成功
 //        html {
 //            enabled true
 //        }
-        html.destination file("${buildDir}/reports/html")
+//        html.destination file("${buildDir}/reports/html")
     }
 
+
+    // 注释掉也能成功
     //    def sourceDirectories_java = "${project.projectDir}/src/main/java"
 //    def executionData_includes = ["$buildDir/jacoco/jacocoTest.exec"]
 //
@@ -45,23 +51,24 @@ jacocoTestReport {
 //    getExecutionData().from(executionData_includes)  // raw coverage data file
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.5
-            }
-        }
-        rule {
-            enabled = false
-            element = 'CLASS'
-//            includes = ['org.gradle.*']
-            includes = ['com.github.yingvickycao.javalib.*']
-            limit {
-                counter = 'LINE'
-                value = 'TOTALCOUNT'
-                maximum = 0.3
-            }
-        }
-    }
-}
+// 注释掉也能成功
+//jacocoTestCoverageVerification {
+//    violationRules {
+//        rule {
+//            limit {
+//                minimum = 0.5
+//            }
+//        }
+//        rule {
+//            enabled = false
+//            element = 'CLASS'
+////            includes = ['org.gradle.*']
+//            includes = ['com.github.yingvickycao.javalib.*']
+//            limit {
+//                counter = 'LINE'
+//                value = 'TOTALCOUNT'
+//                maximum = 0.3
+//            }
+//        }
+//    }
+//}
