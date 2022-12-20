@@ -4,8 +4,10 @@ test {
     jacoco {
         destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
+        includes = ['com.github.yingvickycao.javalib.*']
+
     }
-    finalizedBy 'jacocoTestReport'
+//    finalizedBy 'jacocoTestReport'
 }
 
 //jacoco {
@@ -14,11 +16,12 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
+        xml.enabled false
         csv.enabled false
 //        html.enabled true
         html {
-            enabled true
+            enabled false
+            destinationFile file("$buildDir/reports/html")
         }
     }
 
@@ -44,25 +47,25 @@ jacocoTestReport {
 //    getExecutionData().from(executionData_includes)  // raw coverage data file
 }
 
-//jacocoTestCoverageVerification {
-//    violationRules {
-//        rule {
-//            limit {
-//                minimum = 0.5
-//            }
-//        }
-//
-//        rule {
-//            enabled = false
-//            element = 'CLASS'
-////            includes = ['org.gradle.*']
-//            includes = ['com.github.yingvickycao.javalib']
-//
-//            limit {
-//                counter = 'LINE'
-//                value = 'TOTALCOUNT'
-//                maximum = 0.3
-//            }
-//        }
-//    }
-//}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+//            includes = ['org.gradle.*']
+            includes = ['com.github.yingvickycao.javalib.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
