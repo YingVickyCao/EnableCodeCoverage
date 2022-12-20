@@ -5,7 +5,7 @@ test {
         classDumpDir = file("$buildDir/jacoco/classpathdumps")
         includes = ['com.github.yingvickycao.javalib.*']
     }
-//    finalizedBy 'jacocoTestReport'
+    finalizedBy 'jacocoTestReport'
 }
 
 //jacoco {
