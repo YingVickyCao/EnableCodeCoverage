@@ -7,7 +7,7 @@ test {
         includes = ['com.github.yingvickycao.javalib.*']
 
     }
-//    finalizedBy 'jacocoTestReport'
+    finalizedBy 'jacocoTestReport'
 }
 
 //jacoco {
