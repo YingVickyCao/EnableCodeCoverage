@@ -14,9 +14,10 @@
         <!--        <kotlin.version>1.8.0-RC2</kotlin.version>-->
         <kotlin.version>1.5.0</kotlin.version>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
 <!-- project.basedir https://www.jb51.net/article/240010.htm       -->
 <!--        <sonar.coverage.jacoco.xmlReportPath>${project.basedir}/target/jacoco.exec</sonar.coverage.jacoco.xmlReportPath>-->
-        <sonar.jacoco.reportPath>${project.basedir}/javaLib/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.reportPaths>${project.basedir}/javaLib/target/jacoco.exec</sonar.jacoco.reportPaths>
     </properties>
     <repositories>
         <repository>
