@@ -20,7 +20,10 @@ https://maven.apache.org/plugins/index.html
 https://www.jacoco.org/jacoco/trunk/doc/
 
 cd javaLib
+// only javaLib/target/jacoco.exec
 mvn clean compile jacoco:prepare-agent test
+// javaLib/target/jacoco.exec =>, then +javaLib/target/site/jacoco/.html,.csv, .xml, and sonarqube is reading coverage report from .xml
+mvn clean compile jacoco:prepare-agent test jacoco:report
 ```
 
 
