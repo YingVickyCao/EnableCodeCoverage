@@ -19,7 +19,7 @@ gradle clean :app:assembleRelease :app:testRelease :androidLib:testRelease :java
 https://maven.apache.org/plugins/index.html
 
 cd javaLib
-mvn compile jacoco:prepare-agent test
+mvn clean compile jacoco:prepare-agent test
 
 ```
 
