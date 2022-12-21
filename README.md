@@ -14,6 +14,16 @@ gradle clean :app:assembleDebug :app:testDebug :androidLib:testDebug :javaLib:te
 gradle clean :app:assembleRelease :app:testRelease :androidLib:testRelease :javaLib:test
 ```
 
+# Maven
+```
+https://maven.apache.org/plugins/index.html
+
+cd javaLib
+mvn compile jacoco:prepare-agent test
+
+```
+
+
 # Newest testing on 2022-12-20
 branch = master <br/>
 TeamCity Professional 2022.10.1 (build 116934) <br/>
@@ -22,3 +32,4 @@ SonarQube Community EditionVersion 8.9.10 (build 61524) <br/>
 
 # Refs
 - [TeamCity CI](https://github.com/YingVickyCao/YingVickyCao.github.io/blob/master/doc/tools/teamcity/Readme.md)
+- https://kotlinlang.org/docs/maven.html#attributes-common-to-jvm-and-js

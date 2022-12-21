@@ -6,6 +6,7 @@ apply from:'../jacoco_unit_test_4_javalib.gradle'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
 }
 
