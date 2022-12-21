@@ -17,10 +17,10 @@ gradle clean :app:assembleRelease :app:testRelease :androidLib:testRelease :java
 # Maven
 ```
 https://maven.apache.org/plugins/index.html
+https://www.jacoco.org/jacoco/trunk/doc/
 
 cd javaLib
 mvn clean compile jacoco:prepare-agent test
-
 ```
 
 
