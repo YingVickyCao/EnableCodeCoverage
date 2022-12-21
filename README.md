@@ -22,10 +22,17 @@ https://www.jacoco.org/jacoco/trunk/doc/
 cd javaLib
 // only javaLib/target/jacoco.exec
 mvn clean compile jacoco:prepare-agent test
+
 // javaLib/target/jacoco.exec =>, then +javaLib/target/site/jacoco/.html,.csv, .xml, and sonarqube is reading coverage report from .xml
 mvn clean compile jacoco:prepare-agent test jacoco:report
-```
 
+// 不加 kotlin:compile，最后javaLib/target/classes没有kotlin
+mvn clean kotlin:compile compile jacoco:prepare-agent test jacoco:report
+
+
+// 不加 kotlin:compile，最后javaLib/target/test-classes没有kotlin
+mvn clean compile kotlin:compile jacoco:prepare-agent kotlin:test-compile test jacoco:report
+```
 
 # Newest testing on 2022-12-20
 branch = master <br/>
