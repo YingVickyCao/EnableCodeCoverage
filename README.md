@@ -27,7 +27,6 @@ mvn clean compile jacoco:prepare-agent test jacoco:report
 // 不加 kotlin:compile，最后javaLib/target/classes没有kotlin
 mvn clean kotlin:compile compile jacoco:prepare-agent test jacoco:report
 
-
 // 不加 kotlin:compile，最后javaLib/target/test-classes没有kotlin
 mvn clean compile kotlin:compile jacoco:prepare-agent kotlin:test-compile test jacoco:report
 ```
